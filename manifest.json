@@ -1,0 +1,66 @@
+{
+    "manifest_version": 3,
+    "name": "TabStacker",
+    "version": "1.0.0",
+    "description": "With TabStacker, you can effortlessly corral all your open tabs into a single, sleek page, decluttering your workspace and simplifying your online life.",
+    "icons": {
+        "16": "/icon-16.png",
+        "48": "/icon-48.png",
+        "128": "/icon-128.png"
+    },
+    "action": {
+        "default_icon": {
+            "16": "/icon-16.png",
+            "48": "/icon-48.png",
+            "128": "/icon-128.png"
+        },
+        "default_popup": "popup.html",
+        "default_title": "TabStacker"
+    },
+    "chrome_url_overrides": {
+        "newtab": "tab_override.html"
+    },
+    "background": {
+        "service_worker": "background.js"
+    },
+    "permissions": [
+        "activeTab",
+        "tabs",
+        "contextMenus",
+        "storage",
+        "webNavigation"
+    ],
+    "host_permissions": [
+        "https://*/*"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "https://*/*"
+            ],
+            "js": [
+                "contentScript.js"
+            ]
+        }
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "popup.html",
+                "popup.js"
+            ],
+            "matches": [
+                "*://*/*"
+            ]
+        }
+    ],
+    "commands": {
+        "sampleCommand": {
+            "suggested_key": {
+                "default": "Ctrl+Shift+S",
+                "mac": "MacCtrl+Shift+S"
+            },
+            "description": "Sample Command"
+        }
+    }
+}
