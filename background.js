@@ -100,53 +100,6 @@ function updateSavedTabsOnNewTabCreation(newTabId) {
 }
 
 
-// // Listener for when a tab's history state is updated
-// chrome.webNavigation.onHistoryStateUpdated.addListener((details) => {
-//     console.log(details)
-//     // if (tabsLoadingMap[details.tabId]) {
-//     // // Update saved tab data after the tab's URL changes
-//     // updateSavedTabsOnURLChange(details.tabId, details.url);
-//     // console.log(details.tabId, details.url)
-//     // // Remove the tab from the loading map
-//     // delete tabsLoadingMap[details.tabId];
-//     // }
-//     console.log(tabsLoadingMap[details.tabId])
-//     if (tabsLoadingMap[details.tabId]) {
-//         console.log("hello")
-//         // Remove the tab from the loading map first
-//         delete tabsLoadingMap[details.tabId];
-
-//         // Update saved tab data after the tab's URL changes
-//         updateSavedTabsOnURLChange(details.tabId, details.url);
-//     }
-// });
-
-
-
-// // Function to update saved tab data after a tab's URL changes
-// function updateSavedTabsOnURLChange(tabId, newUrl) {
-//     console.log(tabId, newUrl)
-//     chrome.tabs.get(tabId, (tab) => {
-//         if (tab) {
-//             const updatedTab = {
-//                 tabId: tab.id,
-//                 title: tab.title,
-//                 url: newUrl, // Use the new URL from the event
-//             };
-
-//             chrome.storage.local.get('savedTabs', (result) => {
-//                 const savedTabs = result.savedTabs || [];
-//                 const updatedTabs = savedTabs.map((savedTab) => {
-//                     if (savedTab.tabId === tabId) {
-//                         return updatedTab;
-//                     }
-//                     return savedTab;
-//                 });
-//                 chrome.storage.local.set({ 'savedTabs': updatedTabs });
-//             });
-//         }
-//     });
-// }
 
 // Listener for when a tab is updated
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
@@ -156,7 +109,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     }
 });
 
-// ... Existing code ...
+
 
 // Function to update saved tab data after a tab's URL changes
 function updateSavedTabsOnURLChange(tabId, newUrl) {
