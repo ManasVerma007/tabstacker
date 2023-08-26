@@ -1,5 +1,3 @@
-<!-- popup.html -->
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,12 +33,24 @@
       text-decoration: none;
       color: black;
     }
-
+    span{
+      display: flex;
+      align-items: center;
+    }
+    .close-icon {
+        cursor: pointer;
+        margin-left: 8px;
+        width: 16px;
+        height: 16px;
+        color: red;
+    }
   </style>
 </head>
 <body>
+  <noscript>JavaScript must be enabled to run TabStacker ;</noscript>
   <h1>Current  Tabs</h1>
   <ul id="tabList"></ul>
+  <p id="bookmarkList"></p>
 
   <script src="popup.js"></script>
 </body>

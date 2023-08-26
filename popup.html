@@ -5,12 +5,47 @@
 <head>
   <title>TabStacker Popup</title>
   <style>
-    /* Add your styling here */
+    body{
+      width: 400px;
+      height: 600px;
+      background-color: black;
+      color: white;
+      font-size: 1rem;
+      font-weight: bold;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+    img{
+      height: 1rem;
+      width: 1rem;
+      border-radius: 5px;
+    }
+    #tabList{
+      list-style-type: none;
+      padding: 0;
+      display: grid;
+      grid-template-columns: 1fr;
+      
+    }
+    li{
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+    a{
+      text-decoration: none;
+      color: #8EC5FC;
+    }
   </style>
 </head>
 <body>
+  <noscript>JavaScript must be enabled to run TabStacker ;</noscript>
+
   <h1>Saved Tabs</h1>
   <ul id="tabList"></ul>
+  <p id="bookmarkList"></p>
   <script src="popup.js"></script>
 </body>
 </html>

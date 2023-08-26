@@ -1,14 +1,13 @@
-console.log("Bismillah")
 // Listener for when the extension is installed or updated
 chrome.runtime.onInstalled.addListener(() => {
     // Save all currently opened tabs
     saveOpenTabs();
 });
-
+let tabData = [];
 // Function to save all currently opened tabs
 function saveOpenTabs() {
     chrome.tabs.query({}, (tabs) => {
-        const tabData = tabs.map((tab) => {
+        tabData = tabs.map((tab) => {
             return {
                 title: tab.title,
                 url: tab.url,
@@ -135,3 +134,16 @@ function updateSavedTabsOnURLChange(tabId, newUrl) {
         }
     });
 }
+chrome.tabs.onRemoved.addListener((tabId, removeInfo) => {
+    // Remove the closed tab from the displayedUrls set
+    const removedTab = tabData.find(tab => tab.tabId === tabId);
+    if (removedTab) {
+        displayedUrls.delete(removedTab.url);
+        // Update your tabData array to remove the closed tab
+        tabData = tabData.filter(tab => tab.tabId !== tabId);
+        // Update the displayed tab list
+        displaySavedTabs(tabData);
+        // Update the displayed tab list in the popup
+        chrome.runtime.sendMessage({ action: 'updateTabList', tabData });
+    }
+});
